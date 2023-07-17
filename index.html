@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Todo list</h1>
+    
+    <button id="btn">Add a task</button>
+    <div id="todo">
+        <div class="todoCard">
+            <textarea maxlength="200" cols="20" rows="15" class="task">New task</textarea>
+            <span class="delBtn"><i class="fa fa-trash" aria-hidden="true"></i></span>
+
+        </div>
+            <script>
+                function ajout(card){
+                    let newcard = card.cloneNode()
+                    todo.appendChild(newcard)
+                }
+                
+                const btn = document.querySelector("#btn")
+                const card = document.querySelector(".todoCard")
+                const todo = document.querySelector("#todo")
+                const newcard = card.cloneNode()
+                console.log("btn", btn)
+                console.log("card", card)
+                btn.addEventListener("click",function(){
+                    let newcard = card.cloneNode(true)
+                    todo.appendChild(newcard)
+                })
+                console.log("newcard", newcard)
+            </script>
+    </div>
+</body>
+</html>
