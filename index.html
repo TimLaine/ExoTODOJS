@@ -5,35 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Document</title>
+    <title>Todo JS</title>
 </head>
 <body>
     <h1>Todo list</h1>
     
-    <button id="btn">Add a task</button>
     <div id="todo">
-        <div class="todoCard">
-            <textarea maxlength="200" cols="20" rows="15" class="task">New task</textarea>
-            <span class="delBtn"><i class="fa fa-trash" aria-hidden="true"></i></span>
-
+    <button id="btn">Add a task</button>
+    <div id="count"></div>
+        <div id="todoCards">
+            <div class="todoCard">
+                <textarea maxlength="200" cols="20" rows="15" class="task">New task</textarea>
+                <span class="delBtn"><i class="fa fa-trash" aria-hidden="true"></i></span>
+        </div>
         </div>
             <script>
-                function ajout(card){
-                    let newcard = card.cloneNode()
-                    todo.appendChild(newcard)
-                }
+
+                let btn = document.querySelector("#btn")
+                let cards = document.querySelector("#todoCards")
+                let card = document.querySelector(".todoCard")
+                let delBtn = document.querySelector(".delBtn")
+                let count = document.querySelector("#count")
                 
-                const btn = document.querySelector("#btn")
-                const card = document.querySelector(".todoCard")
-                const todo = document.querySelector("#todo")
-                const newcard = card.cloneNode()
-                console.log("btn", btn)
-                console.log("card", card)
-                btn.addEventListener("click",function(){
-                    let newcard = card.cloneNode(true)
-                    todo.appendChild(newcard)
+
+                btn.addEventListener("click",ajout)
+                
+                delBtn.addEventListener("click",function(){
+                    suppression(card)
                 })
-                console.log("newcard", newcard)
+                
+                countCards()
+
+                function ajout(){
+                    let newCard = card.cloneNode(true)
+                    cards.appendChild(newCard)
+                    let newDelBtn = newCard.querySelector(".delBtn")
+                    newDelBtn.addEventListener("click",function(){
+                        suppression(newCard)
+                    })
+                    countCards()
+                }
+                function suppression(cardDlt){
+                    cardDlt.remove()
+                    countCards()
+                }
+                function countCards(){
+                tempCount = cards.querySelectorAll(".todoCard")
+                count.innerText = tempCount.length
+                }
             </script>
     </div>
 </body>
